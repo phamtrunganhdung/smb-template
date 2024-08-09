@@ -1,51 +1,243 @@
-<div>
-  <div class="bg-feature-bg bg-no-repeat px-5 py-16 flex flex-col gap-10">
-    <h1 class="text-white text-3xl font-semibold">
-      Flexibele en efficiënte UC-oplossingen voor kleine en middelgrote
-      bedrijven
-    </h1>
-    <button
-      class="bg-white border-2 border-sky-500 px-3 py-2 rounded-full text-sky-500 font-bold w-64 text-left relative"
-    >
-      Download Brochure
-      <img
-        class="w-3 h-3 object-contain absolute right-2 top-4"
-        src="/img/arrow-right-sky.svg"
-      />
-    </button>
-    <img src="/img/video-thumnail.png" />
+<div class="2xl:px-52 2xl:bg-gray-300">
+  <!-- intro -->
+  <div
+    class="bg-feature-bg bg-no-repeat px-5 py-16 flex flex-col gap-10 lg:flex-row xl:px-52"
+  >
+    <div class="flex flex-col gap-10 items-start justify-center">
+      <h1 class="text-white text-3xl font-semibold lg:text-5xl xl:text-3xl">
+        Flexibele en efficiënte UC-oplossingen voor kleine en middelgrote
+        bedrijven
+      </h1>
+      <app-button
+        [class]="'w-64'"
+        [secondary]="true"
+        [title]="'Download Brochure'"
+      ></app-button>
+    </div>
+    <img
+      class="md:max-w-[80%] md:mx-auto lg:max-w-[50%] lg:h-1/2"
+      src="/img/video-thumnail.png"
+    />
   </div>
-  <!-- form -->
-  <div class="bg-gradient-to-r from-violet-500 to-fuchsia-500">
-    <h1 class="text-white text-3xl font-semibold">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum, nemo qui
-      odit, neque minima dolor ducimus esse ex quos at laudantium veniam eaque
-      asperiores sunt animi totam! Est, totam voluptates!s Lorem ipsum dolor sit
-      amet consectetur adipisicing elit. Tempora qui quod corrupti veritatis
-      doloribus mollitia optio, delectus, suscipit nihil excepturi repellat
-      cumque, repellendus voluptates eos saepe minus consequatur reiciendis!
-      Culpa. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat,
-      illum ipsam soluta, eum iure dicta adipisci, dolore commodi rem atque
-      alias repudiandae enim odio molestias ratione molestiae corporis quis
-      nihil.
-    </h1>
-  </div>
-  <!-- form -->
-  <div class="px-5 py-12">
-    <h1 class="text-2xl font-bold text-sky-500">
-      OpenScape Business biedt meer UC-functionaliteit in één oplossing dan
-      enige andere leverancier
-    </h1>
+  <div class="flex flex-col gap-10 lg:flex-row lg:gap-0">
+    <!-- form -->
+    <div class="bg-gradient-to-r from-violet-500 to-fuchsia-500 lg:w-2/5">
+      <h1 class="text-white text-3xl font-semibold">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum, nemo
+        qui odit, neque minima dolor ducimus esse ex quos at laudantium veniam
+        eaque asperiores sunt animi totam! Est, totam voluptates!s Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Tempora qui quod corrupti
+        veritatis doloribus mollitia optio, delectus, suscipit nihil excepturi
+        repellat cumque, repellendus voluptates eos saepe minus consequatur
+        reiciendis! Culpa. Lorem ipsum dolor sit, amet consectetur adipisicing
+        elit. Placeat, illum ipsam soluta, eum iure dicta adipisci, dolore
+        commodi rem atque alias repudiandae enim odio molestias ratione
+        molestiae corporis quis nihil.
+      </h1>
+    </div>
+    <!-- more -->
+    <div class="bg-gray-100 px-5 py-12 lg:w-3/5">
+      <h1 class="text-2xl font-bold text-sky-500">
+        OpenScape Business biedt meer UC-functionaliteit in één oplossing dan
+        enige andere leverancier
+      </h1>
 
-    <p>
-      {{ content1s.label }}
-    </p>
-    <ul>
-      @for (content1 of content1s.children; track $index) {
-      <li>
-        {{ content1.label }}
-      </li>
-      }
-    </ul>
+      <p class="text-lg font-medium">
+        {{ content1s.label }}
+      </p>
+      <ul
+        class="list-disc list-outside py-6 max-w-xs mx-auto md:max-w-xl lg:max-w-md"
+      >
+        @for (content1 of content1s.children; track $index) {
+        <li class="text-lg">
+          {{ content1.label }}
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="bg-white px-5 pt-12 pb-5">
+    <div
+      class="flex flex-col justify-center items-center border-b-[1px] pb-12 lg:flex-row lg:gap-4 xl:mx-auto xl:max-w-5xl"
+    >
+      <img class="max-w-72 mx-auto" src="/img/unify-business.png" />
+      <div class="flex flex-col gap-3 items-center">
+        <h1
+          class="text-sky-500 text-xl text-center font-bold my-2 lg:text-start lg:text-2xl"
+        >
+          Ontdek meer over OpenScape Business en waarom het de juiste oplossing
+          is voor kleine en middelgrote bedrijven
+        </h1>
+        <app-button [title]="'Download Brochure'"></app-button>
+      </div>
+    </div>
+    <div class="flex flex-col gap-3 lg:flex-row">
+      <div class="bg-white pt-12 flex flex-col gap-3 xl:px-32">
+        <img
+          class="max-w-72 mx-auto md:ml-0 md:max-w-96"
+          src="/img/unify-switch.png"
+        />
+        <div>
+          <span class="text-sky-500 text-2xl font-bold my-2"
+            >OpenScape Business</span
+          >
+          <p class="text-base">
+            Biedt één unieke gebruikservaring, waar u ook bent
+          </p>
+        </div>
+        <div class="flex flex-col gap-3 md:flex-row">
+          <app-button [title]="'OfferteAanvragen'"></app-button>
+          <app-button [title]="'Download Brochure'"></app-button>
+        </div>
+        <span class="text-lg"
+          >Moderne communicatiesystemen kunnen meer doen, dan alleen u helpen in
+          contact te blijven met uw collega’s, ze kunnen u bedrijf ingrijpend
+          veranderen. Ze kunnen de samenwerking tussen kantoren verbeteren en
+          flexibel thuiswerken mogelijk maken.</span
+        >
+      </div>
+      <div class="lg:px-2 xl:px-32">
+        <p class="text-lg font-medium mt-4">
+          {{ content2s.label }}
+        </p>
+        <ul
+          class="list-disc list-outside py-6 max-w-xs mx-auto md:max-w-xl md:columns-2 md:gap-20"
+        >
+          @for (content2 of content2s.children; track $index) {
+          <li class="text-lg">
+            {{ content2.label }}
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div
+    class="bg-gray-100 px-5 py-10 flex flex-col lg:grid md:grid-cols-1 gap-3 lg:grid-cols-2 lg:items-center"
+  >
+    <div class="flex flex-col gap-3 xl:pl-24">
+      <h1 class="text-2xl font-bold text-sky-500">Unify Phone</h1>
+      <p class="text-black text-lg font-semibold">
+        de softphone plug-in voor VoIP-telefonie voor OpenScape-platforms en
+        Microsoft Teams
+      </p>
+      <p class="text-lg">
+        Verbonden zijn in 2024 betekent dat u meerdere apparaten, apps en
+        platformen gebruikt terwijl u wisselt tussen werken op kantoor, thuis of
+        in de eerste lijn. U hebt een betrouwbare manier nodig om te
+        communiceren zonder onderbrekingen, waar u ook bent.
+      </p>
+      <p class="text-lg font-medium mt-5">
+        {{ content3s.label }}
+      </p>
+      <ul
+        class="list-disc list-outside py-6 max-w-xs mx-auto md:max-w-xl lg:max-w-md"
+      >
+        @for (content3 of content3s.children; track $index) {
+        <li class="text-lg">
+          {{ content3.label }}
+        </li>
+        }
+      </ul>
+      <div class="flex flex-col gap-3 md:flex-row">
+        <app-button [title]="'Download Brochure'"></app-button>
+        <app-button
+          [class]="'w-full'"
+          [secondary]="true"
+          [title]="'Probeer Unify Phone 30-dagen gratis!'"
+        ></app-button>
+      </div>
+    </div>
+    <img src="/img/video-thumnail-phone.png" class="mt-5" />
+    <div class="flex flex-col gap-5 md:flex-row md:items-center col-span-2">
+      <div class="mt-5 flex flex-col items-center justify-center gap-4">
+        <h1 class="text-3xl text-sky-500 md:text-xl">On premise / Hosted</h1>
+        <div
+          class="bg-white w-full rounded-md flex flex-col items-center justify-center px-14 py-16 md:w-44 md:h-72 md:px-0 lg:w-56 xl:w-72"
+        >
+          <img
+            class="max-w-44 mx-auto md:scale-50 xl:scale-100"
+            src="/img/unify-switch.png"
+          />
+          <p
+            class="text-sm max-w-40 font-semibold tex-center md:scale-50 xl:scale-100"
+          >
+            OpenScape Business or OpenScape Business S
+          </p>
+        </div>
+        <p class="text-sky-500 text-base text-center font-semibold xl:px-24">
+          Maak verbinding met een lokale of gehoste OpenScape telefonie
+          oplossing voor MKB/KMO
+        </p>
+      </div>
+      <img
+        class="w-16 mx-auto h-16 md:w-14 md:h-14 md:rotate-[-90deg]"
+        src="/img/arrow-down-effect.png"
+      />
+      <div class="my-3 flex flex-col items-center justify-center gap-4">
+        <h1 class="text-3xl text-sky-500 md:text-xl">Hybrid</h1>
+        <div
+          class="bg-white w-full rounded-md flex flex-col items-center justify-center px-14 py-16 md:w-44 md:h-72 md:px-0 lg:w-56 xl:w-72"
+        >
+          <img
+            class="w-44 mx-auto md:scale-50 xl:scale-100"
+            src="/img/unify-phone.png"
+          />
+        </div>
+        <p class="text-sky-500 text-base text-center font-semibold xl:px-24">
+          Unify Phone biedt een uniforme ervaring voor telefonie op elk apparaat
+        </p>
+      </div>
+      <img
+        class="w-16 mx-auto h-16 md:w-14 md:h-14 md:rotate-[-90deg]"
+        src="/img/arrow-down-effect.png"
+      />
+      <div class="my-3 flex flex-col items-center justify-center gap-4">
+        <h1 class="text-3xl text-sky-500 md:text-xl">Cloud</h1>
+        <div
+          class="bg-white w-full rounded-md flex flex-col items-center justify-center py-2 md:w-44 md:h-72 md:px-0 lg:w-56 xl:w-72"
+        >
+          <img class="w-44" src="/img/ms-cloud.png" />
+        </div>
+        <p class="text-sky-500 text-base text-center font-semibold xl:px-24">
+          Eenvoudige integratie met cloud applicaties voor efficienter
+          samenwerken
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="bg-white px-5 py-14 flex flex-col gap-5 xl:px-24">
+    <div class="flex gap-3 md:items-center md:justify-center">
+      <div class="flex flex-col gap-4">
+        <span class="text-sky-500 text-2xl font-bold my-2">Over ons</span>
+        <img
+          class="w-14 h-14 object-contain mt-2 lg:w-24 lg:h-24"
+          src="img/logo.jpeg"
+        />
+        <p class="text-base">
+          Lorem ipsum dolor sit amet. Et laudantium dolores et corrupti culpa ex
+          dolor suscipit est adipisci fugiat eos cupiditate facilis. Sit officia
+          omnis qui consequatur veritatis et deleniti modi qui accusantium
+          accusantium.
+        </p>
+        <p class="text-base font-semibold">
+          Impartner - Partners is een vertrouwde partner van Unify
+        </p>
+      </div>
+      <img
+        class="hidden md:block w-72 lg:w-[500px]"
+        src="/img/telenet-business.png"
+      />
+    </div>
+    <div
+      class="flex flex-col gap-3 md:flex-row md:items-center md:justify-start"
+    >
+      <app-button
+        [class]="'w-72'"
+        [title]="'Adviesgesprek aanvragen'"
+      ></app-button>
+      <app-button [class]="'w-36'" [title]="'9547895678'"></app-button>
+    </div>
+    <img class="block md:hidden" src="/img/telenet-business.png" />
   </div>
 </div>

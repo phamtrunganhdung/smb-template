@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
+import { ButtonComponent } from '../components/button/button.component';
 import { ContentTypeList } from '../models/models';
 
 @Component({
   selector: 'app-feature',
   standalone: true,
-  imports: [],
+  imports: [ButtonComponent],
   templateUrl: './feature.component.html',
 })
 export class FeatureComponent {
@@ -50,4 +51,71 @@ export class FeatureComponent {
       },
     ],
   };
+  content2s: ContentTypeList = {
+    label: 'Belangrijkste functies van OpenScape Business:',
+    children: [
+      {
+        label: 'Mobiele interface voor smartphones, tablets en laptops',
+      },
+      {
+        label: 'Contact center mogelijkheden',
+      },
+      {
+        label: 'Zakelijke Voicemail',
+      },
+      {
+        label: 'Web-Collaboration',
+      },
+      {
+        label: 'Instant Messaging',
+      },
+      {
+        label: 'Live gesprekopname',
+      },
+      {
+        label: 'Geïntegreerde aanwezigheidsfunctie',
+      },
+      {
+        label: 'Gespreksoverzicht',
+      },
+      {
+        label: 'Toegang tot adresboek',
+      },
+      {
+        label: 'Drag & Drop conferentie',
+      },
+      {
+        label: 'Pop-up gesprekken',
+      },
+      {
+        label: 'Persoonlijke Auto-Attendant',
+      },
+      {
+        label: 'In Groupware geïntegreerde UC',
+      },
+      {
+        label: 'Microsoft Teams integratie',
+      },
+    ],
+  };
+  content3s: ContentTypeList = {
+    label:
+      'De perfecte aanvulling op het OpenScape platform van uw keuze is Unify Phone. Een soft client-applicatie die u onderweg toegang geeft tot VoIP-telefoniemogelijkheden voor Microsoft Teams! Unify Phone is een soft phone plug-in voor OpenScape-platforms en Microsoft Teams en biedt:',
+    children: [
+      {
+        label: 'Toegang tot telefoniemogelijkheden zonder premium belplannen',
+      },
+      {
+        label: 'Naadloze combinatie van apparaten en platforms',
+      },
+      {
+        label:
+          'Veilige, eenvoudige en kosteneffectieve toegang tot mobiel en hybride werken',
+      },
+    ],
+  };
+
+  onButtonClick(): void {
+    alert('Button was clicked!');
+  }
 }
