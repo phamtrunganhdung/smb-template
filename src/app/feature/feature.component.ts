@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 
 import { ButtonComponent } from '../components/button/button.component';
-import { ContentTypeList } from '../models/models';
+import { ContentPopular, ContentTypeList } from '../models/models';
+
+interface ContentForm extends ContentPopular {
+  isRequire: boolean;
+  errLabel: string;
+}
 
 @Component({
   selector: 'app-feature',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, CommonModule],
   templateUrl: './feature.component.html',
 })
 export class FeatureComponent {
@@ -115,7 +121,44 @@ export class FeatureComponent {
     ],
   };
 
-  onButtonClick(): void {
-    alert('Button was clicked!');
+  contentFormInput: ContentForm[] = [
+    {
+      label: 'Naam',
+      isRequire: true,
+      errLabel: 'Dit veld dient u inte vullen om veder tegann',
+    },
+    {
+      label: 'Bedrijf',
+      isRequire: true,
+      errLabel: 'Dit veld dient u inte vullen om veder tegann',
+    },
+    {
+      label: 'Telefoonnummer',
+      isRequire: true,
+      errLabel: 'Dit veld dient u inte vullen om veder tegann',
+    },
+    {
+      label: 'E-mail',
+      isRequire: true,
+      errLabel: 'Dit veld dient u inte vullen om veder tegann',
+    },
+  ];
+  isShowSelect: boolean = false;
+  @ViewChild('toggleButton') toggleButton!: ElementRef;
+  @ViewChild('menu') menu!: ElementRef;
+
+  onSelectFormClick() {
+    this.isShowSelect = !this.isShowSelect;
+  }
+
+  constructor(private renderer: Renderer2) {
+    this.renderer.listen('window', 'click', (e: Event) => {
+      if (
+        e.target !== this.toggleButton.nativeElement &&
+        e.target !== this.menu.nativeElement
+      ) {
+        this.isShowSelect = false;
+      }
+    });
   }
 }
