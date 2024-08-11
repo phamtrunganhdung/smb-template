@@ -12,17 +12,23 @@
         [class]="'w-64'"
         [secondary]="true"
         [title]="'Download Brochure'"
+        (click)="openDialog()"
       ></app-button>
     </div>
     <img
-      class="md:max-w-[80%] md:mx-auto lg:max-w-[50%] lg:h-1/2"
+      class="md:max-w-[80%] md:mx-auto lg:max-w-[50%] lg:h-1/2 cursor-pointer"
       src="/img/video-thumnail.png"
+      (click)="
+        openDialogVideo(
+          'https://prodtcma.blob.core.windows.net/customer-resources/unify-partner-program/assets/Carousel%20Composition_BeNeLux%20%281%29.mp4?sv=2022-11-02&se=2024-08-11T16%3A21%3A48Z&sr=b&sp=r&sig=pk0yioq%2FZzTefHUKyY4Yy1eGlTSmiEk0sZlqO%2F5myfM%3D'
+        )
+      "
     />
   </div>
   <div class="flex flex-col gap-10 lg:flex-row lg:gap-0">
     <!-- form -->
     <div
-      class="bg-gradient-to-r from-violet-900 to-fuchsia-900 px-5 py-12 lg:w-2/5"
+      class="bg-gradient-to-r from-violet-900 to-fuchsia-900 px-5 py-12 lg:w-2/5 xl:px-20 2xl:px-24"
     >
       <h1 class="text-white text-3xl font-semibold mb-3">
         Neem contact meet ons op
@@ -57,15 +63,18 @@
               (click)="onSelectFormClick()"
               #toggleButton
             >
-              <input
+              <!-- <input
                 type="text"
                 class="hidden"
                 [value]="renderSelectedContent(helpSelected)"
                 [formControl]="formInfo.controls.help"
-              />
-              <span class="leading-none text-base" #selected>{{
-                renderSelectedContent(helpSelected)
-              }}</span>
+              /> -->
+              <span
+                class="leading-none text-base whitespace-nowrap overflow-hidden"
+                #selected
+                [ngClass]="helpSelected.length === 0 ? 'text-gray-400' : ''"
+                >{{ renderSelectedContent(helpSelected) }}</span
+              >
               <svg
                 class="w-4 h-4 mt-px ml-2"
                 xmlns="http://www.w3.org/2000/svg"
@@ -84,6 +93,15 @@
               [ngClass]="isShowSelect ? 'flex ' : 'hidden'"
               #menu
             >
+              <div
+                class="h-12 flex w-full items-center justify-start hover:bg-gray-200 cursor-pointer"
+              >
+                <p
+                  class="px-3 text-base max-w-96 text-ellipsis whitespace-nowrap overflow-hidden text-gray-400"
+                >
+                  - Hoe kunnen we u helpen? * -
+                </p>
+              </div>
               @for (slc of selectContent; track slc.id) {
               <div
                 class="h-12 flex w-full items-center justify-start hover:bg-gray-200 cursor-pointer"
@@ -98,7 +116,7 @@
               }
             </div>
           </div>
-          @if (!helpSelected) {
+          @if (!helpSelected && !renderSelectedContent(helpSelected)) {
           <span class="text-red-500 text-sm font-thin"
             >Dit veld dient u inte vullen om veder tegann</span
           >
@@ -166,14 +184,17 @@
       class="flex flex-col justify-center items-center border-b-[1px] pb-12 lg:flex-row lg:gap-4 xl:mx-auto xl:max-w-5xl"
     >
       <img class="max-w-72 mx-auto" src="/img/unify-business.png" />
-      <div class="flex flex-col gap-3 items-center">
+      <div class="flex flex-col gap-3 items-center lg:items-start">
         <h1
           class="text-sky-500 text-xl text-center font-bold my-2 lg:text-start lg:text-2xl"
         >
           Ontdek meer over OpenScape Business en waarom het de juiste oplossing
           is voor kleine en middelgrote bedrijven
         </h1>
-        <app-button [title]="'Download Brochure'"></app-button>
+        <app-button
+          [title]="'Download Brochure'"
+          (click)="openDialog()"
+        ></app-button>
       </div>
     </div>
     <div class="flex flex-col gap-3 lg:flex-row">
@@ -191,8 +212,14 @@
           </p>
         </div>
         <div class="flex flex-col gap-3 md:flex-row">
-          <app-button [title]="'OfferteAanvragen'"></app-button>
-          <app-button [title]="'Download Brochure'"></app-button>
+          <app-button
+            [title]="'OfferteAanvragen'"
+            (click)="openDialogFull()"
+          ></app-button>
+          <app-button
+            [title]="'Download Brochure'"
+            (click)="openDialog()"
+          ></app-button>
         </div>
         <span class="text-lg"
           >Moderne communicatiesystemen kunnen meer doen, dan alleen u helpen in
@@ -245,15 +272,27 @@
         }
       </ul>
       <div class="flex flex-col gap-3 md:flex-row">
-        <app-button [title]="'Download Brochure'"></app-button>
+        <app-button
+          [title]="'Download Brochure'"
+          (click)="openDialog()"
+        ></app-button>
         <app-button
           [class]="'w-full'"
           [secondary]="true"
           [title]="'Probeer Unify Phone 30-dagen gratis!'"
+          (click)="openDialogFull()"
         ></app-button>
       </div>
     </div>
-    <img src="/img/video-thumnail-phone.png" class="mt-5" />
+    <img
+      src="/img/video-thumnail-phone.png"
+      class="mt-5 cursor-pointer"
+      (click)="
+        openDialogVideo(
+          'https://prodtcma.blob.core.windows.net/customer-resources/unify-partner-program/assets/Unify%20Phone_60%20sec_No%20Sound%20FX_WHITE_Dutch.mp4'
+        )
+      "
+    />
     <div class="flex flex-col gap-5 md:flex-row md:items-center col-span-2">
       <div class="mt-5 flex flex-col items-center justify-center gap-4">
         <h1 class="text-3xl text-sky-500 md:text-xl">On premise / Hosted</h1>
@@ -340,6 +379,7 @@
       <app-button
         [class]="'w-72'"
         [title]="'Adviesgesprek aanvragen'"
+        (click)="openDialogFull()"
       ></app-button>
       <app-button [class]="'w-36'" [title]="'9547895678'"></app-button>
     </div>

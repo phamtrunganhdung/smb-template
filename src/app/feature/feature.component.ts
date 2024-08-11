@@ -12,8 +12,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ButtonComponent } from '../components/button/button.component';
+import { DialogVideoComponent } from '../components/dialog-video/dialog-video.component';
+import { DialogComponent } from '../components/dialog/dialog.component';
 import { ContentPopular, ContentTypeList } from '../models/models';
 
 interface ContentForm extends ContentPopular {
@@ -196,13 +199,13 @@ export class FeatureComponent implements OnInit {
   @ViewChild('selected') selected!: ElementRef;
 
   isShowSelect: boolean = false;
-  helpSelected: string = 'help1';
+  helpSelected: string = '';
 
   onSelectFormClick() {
     this.isShowSelect = true;
   }
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, public dialog: MatDialog) {
     this.renderer.listen('window', 'click', (e: Event) => {
       if (
         e.target !== this.toggleButton.nativeElement &&
@@ -221,10 +224,31 @@ export class FeatureComponent implements OnInit {
     const content = this.selectContent.find(
       (x: SelectContent) => x.id === idIn
     );
-    return content?.value || '';
+    return content?.value || '-Hoe kunnen we u helpen? *-';
   }
   onSubmit() {
     this.formInfo.value.help = this.renderSelectedContent(this.helpSelected);
     console.log(this.formInfo.value);
+  }
+  openDialog() {
+    this.dialog.open(DialogComponent, {
+      data: {
+        isShowHelpAndNote: false,
+      },
+    });
+  }
+  openDialogFull() {
+    this.dialog.open(DialogComponent, {
+      data: {
+        isShowHelpAndNote: true,
+      },
+    });
+  }
+  openDialogVideo(link: string) {
+    this.dialog.open(DialogVideoComponent, {
+      data: {
+        linkVideo: link,
+      },
+    });
   }
 }
