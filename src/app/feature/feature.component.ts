@@ -1,21 +1,39 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 import { ButtonComponent } from '../components/button/button.component';
 import { ContentPopular, ContentTypeList } from '../models/models';
 
 interface ContentForm extends ContentPopular {
+  id: string;
   isRequire: boolean;
   errLabel: string;
+  formControl: any;
+}
+interface SelectContent {
+  id: string;
+  value: string;
 }
 
 @Component({
   selector: 'app-feature',
   standalone: true,
-  imports: [ButtonComponent, CommonModule],
+  imports: [ButtonComponent, CommonModule, ReactiveFormsModule],
   templateUrl: './feature.component.html',
 })
-export class FeatureComponent {
+export class FeatureComponent implements OnInit {
   content1s: ContentTypeList = {
     label:
       'Het succes van elk bedrijf, groot of klein, hangt af van de effectiviteit van de communicatie. OpenScape Business biedt de eenvoudigste weg naar het uitrollen van volledige, IP-gebaseerde unified communications over het hele netwerk van gebruikers:',
@@ -121,44 +139,92 @@ export class FeatureComponent {
     ],
   };
 
+  formInfo = new FormGroup({
+    name: new FormControl<string>('', [Validators.required]),
+    company: new FormControl<string>('', [Validators.required]),
+    phone: new FormControl<string>('', [Validators.required]),
+    email: new FormControl<string>('', [Validators.required]),
+    help: new FormControl<string>('', [Validators.required]),
+    note: new FormControl<string>('', [Validators.required]),
+    acceptPolicy: new FormControl<boolean>(false),
+  });
+
   contentFormInput: ContentForm[] = [
     {
+      id: 'name',
       label: 'Naam',
       isRequire: true,
       errLabel: 'Dit veld dient u inte vullen om veder tegann',
+      formControl: this.formInfo.controls.name,
     },
     {
+      id: 'company',
       label: 'Bedrijf',
       isRequire: true,
       errLabel: 'Dit veld dient u inte vullen om veder tegann',
+      formControl: this.formInfo.controls.company,
     },
     {
+      id: 'phone',
       label: 'Telefoonnummer',
       isRequire: true,
       errLabel: 'Dit veld dient u inte vullen om veder tegann',
+      formControl: this.formInfo.controls.phone,
     },
     {
+      id: 'email',
       label: 'E-mail',
       isRequire: true,
       errLabel: 'Dit veld dient u inte vullen om veder tegann',
+      formControl: this.formInfo.controls.email,
     },
   ];
-  isShowSelect: boolean = false;
+  selectContent: SelectContent[] = [
+    {
+      id: 'help1',
+      value:
+        'Vraag Een Gratis Proefperiode Voor Unify Phone OpenScape business',
+    },
+    {
+      id: 'help2',
+      value: ' Neem Contact Op Met Een Deskundige',
+    },
+  ];
+
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu!: ElementRef;
+  @ViewChild('selected') selected!: ElementRef;
+
+  isShowSelect: boolean = false;
+  helpSelected: string = 'help1';
 
   onSelectFormClick() {
-    this.isShowSelect = !this.isShowSelect;
+    this.isShowSelect = true;
   }
 
   constructor(private renderer: Renderer2) {
     this.renderer.listen('window', 'click', (e: Event) => {
       if (
         e.target !== this.toggleButton.nativeElement &&
-        e.target !== this.menu.nativeElement
+        e.target !== this.menu.nativeElement &&
+        e.target !== this.selected.nativeElement
       ) {
         this.isShowSelect = false;
       }
     });
+  }
+  ngOnInit() {}
+  onSelect(value: string) {
+    this.helpSelected = value;
+  }
+  renderSelectedContent(idIn: string): string {
+    const content = this.selectContent.find(
+      (x: SelectContent) => x.id === idIn
+    );
+    return content?.value || '';
+  }
+  onSubmit() {
+    this.formInfo.value.help = this.renderSelectedContent(this.helpSelected);
+    console.log(this.formInfo.value);
   }
 }
