@@ -149,7 +149,7 @@ export class FeatureComponent implements OnInit {
     email: new FormControl<string>('', [Validators.required]),
     help: new FormControl<string>('', [Validators.required]),
     note: new FormControl<string>('', [Validators.required]),
-    acceptPolicy: new FormControl<boolean>(false),
+    acceptPolicy: new FormControl<boolean>(false, [Validators.required]),
   });
 
   contentFormInput: ContentForm[] = [

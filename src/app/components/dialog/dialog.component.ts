@@ -92,9 +92,9 @@ export class DialogComponent {
     company: new FormControl<string>('', [Validators.required]),
     phone: new FormControl<string>('', [Validators.required]),
     email: new FormControl<string>('', [Validators.required]),
-    help: new FormControl<string>('', [Validators.required]),
-    note: new FormControl<string>('', [Validators.required]),
-    acceptPolicy: new FormControl<boolean>(false),
+    help: new FormControl<string>(''),
+    note: new FormControl<string>(''),
+    acceptPolicy: new FormControl<boolean>(false, [Validators.required]),
   });
 
   contentFormInput: ContentForm[] = [

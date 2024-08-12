@@ -112,8 +112,9 @@
     </p>
   </div>
   <button
-    class="mt-3 bg-sky-500 w-52 border-2 border-sky-500 px-3 py-2 rounded-full text-white font-bold text-left relative hover:bg-white hover:text-sky-500"
+    class="mt-3 bg-sky-500 w-52 border-2 border-sky-500 px-3 py-2 rounded-full text-white font-bold text-left relative hover:bg-white hover:text-sky-500 disabled:cursor-not-allowed"
     type="submit"
+    [disabled]="formInfo.invalid"
   >
     <span
       class="px-3 flex justify-center items-center text-center text-base font-medium"
